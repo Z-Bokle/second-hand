@@ -26,7 +26,7 @@ const textPaddingBottom = computed(() => `${height.value / 18}px`)
 
 <style scoped>
 .main {
-    background-color: lightyellow;
+    background-color: rgb(255, 255, 224);
     height: v-bind(mainHeight);
 }
 

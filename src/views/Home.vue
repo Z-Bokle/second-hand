@@ -5,24 +5,28 @@
             <template #icon="props">
                 <Home />
             </template>
+            首页
         </TabbarItem>
 
         <TabbarItem name="order" :to="{name: 'Order'}" replace>
             <template #icon="props">
                 <Order />
             </template>
+            订单
         </TabbarItem>
 
         <TabbarItem name="message" :to="{name: 'Message'}" replace>
             <template #icon="props">
                 <Message />
             </template>
+            消息
         </TabbarItem>
 
         <TabbarItem name="profile" :to="{name: 'Profile'}" replace>
             <template #icon="props">
                 <User />
             </template>
+            我的
         </TabbarItem>
     </Tabbar>
 </template>
