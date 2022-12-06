@@ -13,7 +13,7 @@
             </div>
         </Tab>
         <Tab title="人脸登录">
-
+            <div>暂时无法实现:(</div>
         </Tab>
     </Tabs>
 </template>

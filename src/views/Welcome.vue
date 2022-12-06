@@ -4,9 +4,9 @@
             请登录或注册后再使用
         </div>
         <div class="buttons">
-            <Button color="linear-gradient(to left, #FA340F, #F07416)" size="large" class="button" round replace :to="{name: 'Register'}">注册</Button>
-            <Button color="linear-gradient(to left, #FA340F, #F07416)" size="large" class="button" round replace :to="{name: 'Login'}">登录</Button>
-            <Button color="linear-gradient(to left, #FA340F, #F07416)" size="large" class="button" round replace :to="{name: 'Main'}">直接进入主页</Button>            
+            <Button color="linear-gradient(to left, #FA340F, #F07416)" size="large" class="button" round :to="{name: 'Register'}">注册</Button>
+            <Button color="linear-gradient(to left, #FA340F, #F07416)" size="large" class="button" round :to="{name: 'Login'}">登录</Button>
+            <Button color="linear-gradient(to left, #FA340F, #F07416)" size="large" class="button" round :to="{name: 'Main'}">直接进入主页</Button>            
         </div>
     </div>
 </template>
