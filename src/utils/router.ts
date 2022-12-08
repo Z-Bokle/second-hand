@@ -25,7 +25,7 @@ const routes = [
         {path: 'profile', name: 'Profile', component: Profile} // 我的
     ]},
     {path: '/publish', name: 'Publish', component: Publish}, // 发布商品
-    {path: '/detail', name: 'Detail', component: Detail}, // 商品详情
+    {path: '/detail/:id', name: 'Detail', component: Detail}, // 商品详情
     {path: '/trade', name: "Trade", component: Trade}, // 交易
     {path: '/address', name: 'Address', component: Address}, // 地址管理
     {path: '/address/edit/:id', name: 'AddressEdit', component: AddressEdit}, // 地址修改
