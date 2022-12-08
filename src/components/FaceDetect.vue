@@ -97,8 +97,8 @@ const addFace = async () => {
     // 推荐只上传可以在后端数据库设定的用户唯一标识，在拿到百度ai返回的标识后，根据这个标识请求服务器后端接口去拿到用户信息
     image: data.imgUrl.substring(22),
     image_type: 'BASE64',
-    group_id: 'group' + nanoid(), //nanoid是引入的生成唯一标识的js库
-    user_id: nanoid(),
+    group_id: 'face_group',
+    user_id: nanoid(), //nanoid是引入的生成唯一标识的js库
     quality_control: 'NORMAL'
   }
   showToast('请到代码里打开注释')
