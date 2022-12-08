@@ -9,14 +9,18 @@
                     {{ info.name }}
                 </div>
             </Col>
-        </Row>        
+        </Row>
     </div>
-
+    <div class="features">
+        <Grid>
+            <GridItem icon="records" text="地址管理" :to="{name: 'Address'}" />
+        </Grid>
+    </div>
 </template>
 
 <script lang="ts" setup>
 import { useWindowSize } from '@vant/use';
-import { Col, Row, NoticeBar, Image } from 'vant';
+import { Col, Row, Grid, GridItem, Image } from 'vant';
 import { ref } from 'vue';
 
 const info = ref({
@@ -35,5 +39,8 @@ const info = ref({
     font-weight: 600;
     font-size: large;
     margin-top: 30px;
+}
+.features {
+    margin-top: 240px;
 }
 </style>
