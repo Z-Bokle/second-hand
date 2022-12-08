@@ -28,6 +28,7 @@
                     <Uploader :max-size="(2048 * 1024)" :max-count="1" v-model="faceList" @oversize="onOversize" />
                 </template>
             </Field>
+            <div class="center-text">已经有账号?现在去<RouterLink :to="{name: 'Login'}"><span class="link-text">登录</span></RouterLink></div>
             <Button native-type="submit" type="primary" round block>注册</Button>
         </Form>
     </div>
@@ -109,8 +110,15 @@ const formBlockMarginTop = computed(() => `${height.value / 20}px`)
     padding-left: 5%;
     padding-right: 5%;
 }
-
-Form>* {
+.link-text {
+    color: blue;
+}
+.center-text {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+Form > * {
     margin-top: 10px;
 }
 </style>

@@ -10,6 +10,9 @@ import Profile from '../views/Home/Profile.vue';
 import Publish from '../views/Publish.vue';
 import Detail from '../views/Detail.vue';
 import Trade from '../views/Trade.vue';
+import Address from '../views/Address.vue';
+import AddressEdit from '../views/Address/AddressEdit.vue';
+import AddressAdd from '@/views/Address/AddressAdd.vue';
 
 const routes = [
     {path: '/', name: 'Welcome', component: Welcome},
@@ -24,6 +27,9 @@ const routes = [
     {path: '/publish', name: 'Publish', component: Publish}, // 发布商品
     {path: '/detail', name: 'Detail', component: Detail}, // 商品详情
     {path: '/trade', name: "Trade", component: Trade}, // 交易
+    {path: '/address', name: 'Address', component: Address}, // 地址管理
+    {path: '/address/edit/:id', name: 'AddressEdit', component: AddressEdit}, // 地址修改
+    {path: '/address/add', name: 'AddressAdd', component: AddressAdd}, // 地址添加
 ]
 
 const router = VueRouter.createRouter({
