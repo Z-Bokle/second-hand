@@ -16,7 +16,9 @@
                 :rules="[{ pattern: telephonePattern, message: '请输入正确的手机号' }]" />
             <Field v-model="form.code" name="code" label="验证码" placeholder="请输入验证码" required>
                 <template #button>
-                    <Button type="primary" @click="getCode" size="small" :disabled="(codeDelay > 0)" >{{codeDelay > 0 ? `${codeDelay}秒后重试` : '获取验证码'}}</Button>
+                    <Button type="primary" @click="getCode" size="small" :disabled="(codeDelay > 0)">{{ codeDelay > 0 ?
+                            `${codeDelay}秒后重试` : '获取验证码'
+                    }}</Button>
                 </template>
             </Field>
             <Field v-model="form.password" name="password" label="密码" placeholder="请输入密码" type="password" required
@@ -28,13 +30,17 @@
                     <Uploader :max-size="(2048 * 1024)" :max-count="1" v-model="faceList" @oversize="onOversize" />
                 </template>
             </Field>
-            <div class="center-text">已经有账号?现在去<RouterLink :to="{name: 'Login'}"><span class="link-text">登录</span></RouterLink></div>
+            <div class="center-text">已经有账号?现在去<RouterLink :to="{ name: 'Login' }"><span class="link-text">登录</span>
+                </RouterLink>
+            </div>
             <Button native-type="submit" type="primary" round block>注册</Button>
+            <!-- <FaceDetect type="register" /> //人脸注册 -->
         </Form>
     </div>
 </template>
 
 <script lang="ts" setup>
+// import FaceDetect from '@/components/FaceDetect.vue';
 import { useWindowSize } from '@vant/use';
 import { Form, Field, Button, NavBar, Sticky, Uploader, showToast, type UploaderFileListItem } from 'vant';
 import { computed, ref, watchEffect } from 'vue';
@@ -92,7 +98,7 @@ const getCode = () => {
 }
 
 watchEffect(() => {
-    if(codeDelay.value > 0)
+    if (codeDelay.value > 0)
         setTimeout(() => codeDelay.value--, 1000)
 })
 
@@ -110,15 +116,18 @@ const formBlockMarginTop = computed(() => `${height.value / 20}px`)
     padding-left: 5%;
     padding-right: 5%;
 }
+
 .link-text {
     color: blue;
 }
+
 .center-text {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 15px;
 }
-Form > * {
+
+Form>* {
     margin-top: 10px;
 }
 </style>
