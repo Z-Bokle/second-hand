@@ -122,6 +122,9 @@ class RequestHttp {
   delete<T>(url: string, params?: object): Promise<ResultData<T>> {
     return this.service.delete(url, { params });
   }
+  postForm<T>(url: string, params?: string): Promise<ResultData<T>> {
+    return this.service.post(url, params, {headers: {"Content-Type": 'application/x-www-form-urlencoded'}});
+  }
 }
 
 // 导出一个实例对象

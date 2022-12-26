@@ -8,7 +8,7 @@
             首页
         </TabbarItem>
 
-        <TabbarItem name="order" :to="{name: 'Order'}" replace>
+        <TabbarItem name="order" :to="{name: 'OrderList'}" replace>
             <template #icon="props">
                 <Order />
             </template>

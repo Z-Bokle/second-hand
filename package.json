@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "@icon-park/vue-next": "^1.4.2",
+    "@types/qs": "^6.9.7",
     "@vant/touch-emulator": "^1.4.0",
     "@vant/use": "^1.4.3",
     "axios": "^1.2.1",
     "nanoid": "^4.0.0",
+    "pinia": "^2.0.28",
+    "qs": "^6.11.0",
     "vant": "^4.0.1",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2"

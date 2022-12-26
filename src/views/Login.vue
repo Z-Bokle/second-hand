@@ -6,7 +6,7 @@
         <Tab title="密码登录">
             <div class="form-block">
                 <Form @submit="onSubmit">
-                    <Field v-model="form1.sno" name="sno" label="学号" placeholder="学号" type="digit" :rules="[{required: true, message: '请填写学号'}]" />
+                    <Field v-model="form1.userId" name="userId" label="学号" placeholder="学号" type="digit" :rules="[{required: true, message: '请填写学号'}]" />
                     <Field v-model="form1.password" name="password" label="密码" placeholder="密码" type="password" :rules="[{required: true, message: '请输入密码'}]" />
                     <div class="center-text">还没有账号?现在去<RouterLink :to="{name: 'Register'}"><span class="link-text">注册</span></RouterLink></div>
                     <Button round block type="primary" native-type="submit">提交</Button>
@@ -22,17 +22,34 @@
 <script lang="ts" setup>
 import FaceDetect from '@/components/FaceDetect.vue';
 import { useWindowSize } from '@vant/use';
-import { Tabs, Tab, Form, Field, Button, NavBar, Sticky } from 'vant';
+import { Tabs, Tab, Form, Field, Button, NavBar, Sticky, showToast, showFailToast } from 'vant';
 import { computed, ref } from 'vue';
+import { login } from '@/utils/api';
+import { useUserStore } from '@/utils/pinia'
+import { useRouter } from 'vue-router';
 
 const active = ref(0)
 
-const onSubmit = () => {
+const userStore = useUserStore()
+const router = useRouter()
 
+const onSubmit = () => {
+    login(form1.value.userId, form1.value.password)
+    .then((res) => {
+        if(!res || res.data.code != 204) throw new Error("登录失败")
+        userStore.login(res.data.result[0].userId, res.data.result[0].userName)
+        showToast(res.data.message)
+    })
+    .then(() => {
+        router.push({name: 'Main'})
+    })
+    .catch((err: Error) => {
+        showFailToast(err.message)
+    })
 }
 
 const form1 = ref({
-    sno: '',
+    userId: '',
     password: ''
 })
 
