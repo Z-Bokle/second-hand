@@ -65,38 +65,38 @@ class RequestHttp {
      * 响应拦截器
      * 服务器换返回信息 -> [拦截统一处理] -> 客户端JS获取到信息
      */
-    this.service.interceptors.response.use(
-      (response: AxiosResponse) => {
-        const { data, config } = response; // 解构
-        if (data.code === RequestEnums.OVERDUE) {
-          // 登录信息失效，应跳转到登录页面，并清空本地的token
-          localStorage.setItem("token", "");
-          // router.replace({
-          //  path: '/login'
-          // })
-          return Promise.reject(data);
-        }
-        // 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
-        if (data.code && data.code !== RequestEnums.SUCCESS) {
-          showFailToast(data); // 此处也可以使用组件提示报错信息
-          return Promise.reject(data);
-        }
-        return data;
-      },
-      (error: AxiosError) => {
-        const { response } = error;
-        if (response) {
-          this.handleCode(response.status);
-        }
-        if (!window.navigator.onLine) {
-          showFailToast("网络连接失败");
-          // 可以跳转到错误页面，也可以不做操作
-          // return router.replace({
-          // path: '/404'
-          // });
-        }
-      }
-    );
+    // this.service.interceptors.response.use(
+    //   (response: AxiosResponse) => {
+    //     const { data, config } = response; // 解构
+    //     if (data.code === RequestEnums.OVERDUE) {
+    //       // 登录信息失效，应跳转到登录页面，并清空本地的token
+    //       localStorage.setItem("token", "");
+    //       // router.replace({
+    //       //  path: '/login'
+    //       // })
+    //       return Promise.reject(data);
+    //     }
+    //     // 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
+    //     if (data.code && data.code !== RequestEnums.SUCCESS) {
+    //       showFailToast(data); // 此处也可以使用组件提示报错信息
+    //       return Promise.reject(data);
+    //     }
+    //     return data;
+    //   },
+    //   (error: AxiosError) => {
+    //     const { response } = error;
+    //     if (response) {
+    //       this.handleCode(response.status);
+    //     }
+    //     if (!window.navigator.onLine) {
+    //       showFailToast("网络连接失败");
+    //       // 可以跳转到错误页面，也可以不做操作
+    //       // return router.replace({
+    //       // path: '/404'
+    //       // });
+    //     }
+    //   }
+    // );
   }
   handleCode(code: number): void {
     switch (code) {

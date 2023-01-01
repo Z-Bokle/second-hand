@@ -13,8 +13,8 @@
 <script lang="ts" setup>
 import { NavBar, Sticky, Tab, Tabs } from 'vant';
 import { ref } from 'vue';
-import OrderBuy from '../../components/Order-Buy.vue';
-import OrderSell from '../../components/Order-Sell.vue';
+import OrderBuy from '../../components/OrderBuy.vue';
+import OrderSell from '../../components/OrderSell.vue';
 
 const active = ref(0)
 

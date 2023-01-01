@@ -33,7 +33,7 @@
         </div>        
     </div>
 
-    <SubmitBar :price="3500" button-text="购买" @submit="onSubmit" />
+    <SubmitBar :price="details.price" button-text="购买" @submit="onSubmit" />
     <Share v-model="showShare" />
     <Popup v-model:show="showPopup" position="bottom">
         <Cell :title="`对${popupName}的回复`" :value="`共${popupComments?.length}条`" size="large" />
@@ -64,7 +64,8 @@ const details = ref({
     methods: '快递/面交',
     tag: '苹果',
     desc: '',
-    addTime: ''
+    addTime: '',
+    price: 0
 })
 
 interface comment{
@@ -94,13 +95,14 @@ onBeforeMount(() => {
     getGoodsByUUID(id)
     .then((res) => {
         if(!res || res.data.code != 206) throw new Error("获取商品详情失败")
-        details.value.name = res.data.data.cName
-        details.value.region = res.data.data.place
-        details.value.methods = res.data.data.way
-        details.value.tag = res.data.data.type
-        details.value.desc = res.data.data.detail
-        details.value.addTime = res.data.data.addTime
-        res.data.data.pictureList.forEach((element: {picture: string}) => {
+        details.value.name = res.data.result[0].cname
+        details.value.region = res.data.result[0].place
+        details.value.methods = res.data.result[0].way
+        details.value.tag = res.data.result[0].type
+        details.value.desc = res.data.result[0].detail
+        details.value.addTime = res.data.result[0].addTime
+        details.value.price = res.data.result[0].price * 100
+        res.data.result[0].pictureList.forEach((element: {picture: string}) => {
             pics.value.push(element.picture)
         })
 
@@ -112,7 +114,7 @@ onBeforeMount(() => {
     getCommentListByGoodsUUID(id)
     .then((res) => {
         if(!res || res.data.code != 206) throw new Error("评论获取失败")
-        res.data.result.forEach((comment: { edetail: any; userId: any; }) => {
+        res.data.result[0].forEach((comment: { edetail: any; userId: any; }) => {
             const { edetail, userId } = comment // destructor
             comments.value.push({
                 name: userId,

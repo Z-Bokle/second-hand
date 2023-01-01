@@ -43,14 +43,14 @@ onMounted(() => {
     let id:string = typeof route.params['id'] === 'string' ? route.params['id'] : route.params['id'][0]
     returnDealDetail(id)
     .then((res) => {
-        if(!res || res.data.code != 222) throw new Error("获取商品详情失败")
-        product.value.name = res.data.result[1].cName
+        if(!res || res.data.code != 222) throw new Error("获取订单详情失败")
+        product.value.name = res.data.result[1].cname
         product.value.region = res.data.result[1].place
         product.value.methods = res.data.result[1].way
         product.value.tag = res.data.result[1].type
         product.value.desc = res.data.result[1].detail
         product.value.addTime = res.data.result[1].addTime
-        product.value.price = res.data.result[1].price
+        product.value.price = res.data.result[1].price * 100
         res.data.result[1].pictureList.forEach((element: {picture: string}) => {
             pics.value.push(element.picture)
         })

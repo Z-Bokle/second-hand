@@ -36,14 +36,20 @@ const router = useRouter()
 const onSubmit = () => {
     login(form1.value.userId, form1.value.password)
     .then((res) => {
+        //console.log('1) res is', res)
         if(!res || res.data.code != 204) throw new Error("登录失败")
+        //console.log('2) prepare to set state')
         userStore.login(res.data.result[0].userId, res.data.result[0].userName)
+        //console.log('3) state is set', userStore)
         showToast(res.data.message)
     })
     .then(() => {
+        //console.log('4) prepare to jump')
         router.push({name: 'Main'})
+        //console.log('5) page jumped')
     })
     .catch((err: Error) => {
+        //console.error(err)
         showFailToast(err.message)
     })
 }

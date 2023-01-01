@@ -59,7 +59,7 @@ const product = ref({
 const pics = ref<string[]>([])
 
 const method = ref()    // 当前选中的交易方式
-const disabled = ref(true) // 是否允许下单
+const disabled = ref(true) // 是否阻止下单
 const showMethodPicker = ref(false)   // 是否展示交易方式选择器
 const showDatePicker = ref(false) // 是否展示交易日期选择器
 const tip = ref("")
@@ -76,14 +76,14 @@ onMounted(() => {
     getGoodsByUUID(id)
     .then((res) => {
         if(!res || res.data.code != 206) throw new Error("获取商品详情失败")
-        product.value.name = res.data.data.cName
-        product.value.region = res.data.data.place
-        product.value.methods = res.data.data.way
-        product.value.tag = res.data.data.type
-        product.value.desc = res.data.data.detail
-        product.value.addTime = res.data.data.addTime
-        product.value.price = res.data.data.price
-        res.data.data.pictureList.forEach((element: {picture: string}) => {
+        product.value.name = res.data.result[0].cname
+        product.value.region = res.data.result[0].place
+        product.value.methods = res.data.result[0].way
+        product.value.tag = res.data.result[0].type
+        product.value.desc = res.data.result[0].detail
+        product.value.addTime = res.data.result[0].addTime
+        product.value.price = res.data.result[0].price * 100
+        res.data.result[0].pictureList.forEach((element: {picture: string}) => {
             pics.value.push(element.picture)
         })
     })
@@ -106,6 +106,7 @@ const columns = computed(() => {
 // 确认购买
 const onSubmit = () => {
     let id:string = typeof route.params['id'] === 'string' ? route.params['id'] : route.params['id'][0]
+    console.log(id)
     insertToCar(id, useUserStore().userId)
     .then((res) => {
         if(!res || res.data.code != 224) throw new Error("购买失败")

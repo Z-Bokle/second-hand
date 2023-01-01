@@ -2,11 +2,11 @@
     <div class="userinfo">
         <Row :gutter="5">
             <Col :span="7">
-                <Image round :src="info.src" />
+                <Image round />
             </Col>
             <Col :span="7">
                 <div class="username">
-                    {{ info.name }}
+                    {{ userStore.userName }}
                 </div>
             </Col>
         </Row>
@@ -19,14 +19,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowSize } from '@vant/use';
+import { useUserStore } from '@/utils/pinia';
 import { Col, Row, Grid, GridItem, Image } from 'vant';
-import { ref } from 'vue';
 
-const info = ref({
-    name: "用户12345678",
-    src: ''
-})
+const userStore = useUserStore()
 
 </script>
 
